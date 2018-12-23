@@ -19,7 +19,7 @@ liba{liblua}: cxx.export = true
 libs{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
 objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
 
-liba{liblua}: src/hxx{lua.hpp} :
+liba{liblua}: src/hxx{$lua_public_headers} :
 {
     install = include/lua/
 }
