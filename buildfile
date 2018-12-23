@@ -8,6 +8,8 @@ lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
 cxx.poptions =+ "-I$out_root" "-I$src_root" 
 
 objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
+
+liba{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
 libs{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
 
 # Public headers listed in makefile:
@@ -21,10 +23,12 @@ lua_public_headers = lua.h luaconf.h lualib.h lauxlib.h lua.hpp
 
 exe{lua} : src/cxx{lua.c} libs{liblua}
 
-
 ###################################################
 # Lua compiler:
 
 exe{luac} : src/cxx{luac.c} liba{liblua} 
 
+
+
+exe{*} : install = bin/
 
