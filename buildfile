@@ -7,18 +7,25 @@
 lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
 
 
-# liba{liblua}: cxx.export = true
+liba{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
 
 if ($cxx.target.class == 'windows')
 {
-    libs{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
+    libs{liblua}: 
+    {
+        # TODO: report that using cc here makes includes dir not exported/imported.
+        cxx.export.poptions += -DLUA_BUILD_AS_DLL
+        c.export.poptions += -DLUA_BUILD_AS_DLL
+    }
     objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
 }
 
+dirs_to_include = "-I$out_root/src" "-I$src_root/src"
 
-cxx.poptions =+ "-I$out_root" "-I$src_root/src"
+cxx.poptions =+ $dirs_to_include
 
-lib{liblua} : cxx.export.poptions = "-I$out_root" "-I$src_root/src"
+# TODO: report that changing cc by cxx here makes includes dir not exported/imported.
+lib{liblua} : cc.export.poptions =+ $dirs_to_include
 
 ###################################################
 # Lua interpreter:
@@ -32,7 +39,7 @@ exe{luac} : src/cxx{luac} liba{liblua}
 
 ###############
 # Install Setup
-include_dir = include/lua/
+include_dir = include/
 
 # Public headers listed in makefile:
 lua_public_headers = lua.h luaconf.h lualib.h lauxlib.h lua.hpp
