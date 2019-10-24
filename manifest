@@ -5,5 +5,6 @@ summary: Lua is a powerful, efficient, lightweight, embeddable scripting languag
 license: MIT
 url: https://lua.org/
 email: mjklaim@gmail.com
-depends: * build2 >= 0.9.0-
-depends: * bpkg >= 0.9.0-
+depends: * build2 >= 0.11.0-
+depends: * bpkg >= 0.11.0-
+
