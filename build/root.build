@@ -3,7 +3,7 @@ cxx.std = latest
 using cxx
 
 hxx{*}: extension = h
-cxx{*}: extension = c
+cxx{*}: extension = c # We want to make sure the C code works in C++.
 
 # The test target for cross-testing (running tests under Wine, etc).
 #
