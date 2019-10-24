@@ -6,7 +6,7 @@
 
 lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
 
-
+# TODO: ask why these lines are necessary?
 liba{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
 libs{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
 
