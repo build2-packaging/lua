@@ -8,6 +8,7 @@ lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
 
 
 liba{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
+libs{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
 
 if ($cxx.target.class == 'windows')
 {
