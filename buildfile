@@ -6,11 +6,19 @@
 
 lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
 
-liba{liblua}: cxx.export = true
-libs{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
-objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
+
+# liba{liblua}: cxx.export = true
+
+if ($cxx.target.class == 'windows')
+{
+    libs{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
+    objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
+}
+
 
 cxx.poptions =+ "-I$out_root" "-I$src_root/src"
+
+lib{liblua} : cxx.export.poptions = "-I$out_root" "-I$src_root/src"
 
 ###################################################
 # Lua interpreter:
