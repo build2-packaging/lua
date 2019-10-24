@@ -1,6 +1,6 @@
 $out_root/
 {
-  include lua/
+  include /
 }
 
-export $out_root/lua/$import.target
+export $out_root/$import.target

@@ -13,18 +13,18 @@ exe{*} : install = bin/  # All executables should be installed
 ###################################################
 # Lua library (for embedding in C/C++ projects):
 
-lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*} src/hxx{$lua_public_headers}
+lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{* $lua_public_headers}
 
 liba{liblua}: cxx.export = true
 libs{liblua}: cxx.export.poptions += -DLUA_BUILD_AS_DLL
 objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
 
-liba{liblua}: src/hxx{$lua_public_headers} :
+$src_base/src/hxx{$lua_public_headers} :
 {
     install = include/lua/
 }
     
-cxx.poptions =+ "-I$out_root" "-I$src_root" 
+cxx.poptions =+ "-I$out_root" "-I$src_root/src"
 
 ###################################################
 # Lua interpreter:
