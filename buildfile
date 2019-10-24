@@ -2,12 +2,6 @@
 
 
 ###################################################
-# General
-
-
-exe{*} : install = bin/  # All executables should be installed
-
-###################################################
 # Lua library (for embedding in C/C++ projects):
 
 lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
@@ -28,8 +22,8 @@ exe{lua} : src/cxx{lua} libs{liblua}
 
 exe{luac} : src/cxx{luac} liba{liblua} 
 
-#########
-# Install
+###############
+# Install Setup
 include_dir = include/lua/
 
 # Public headers listed in makefile:
@@ -43,3 +37,6 @@ for public_header : src/hxx{*}
 for public_header : src/hxx{$lua_public_headers}
     $public_header@./src/ : install = $include_dir
 
+
+# All executables should be installed
+exe{*} : install = bin/
