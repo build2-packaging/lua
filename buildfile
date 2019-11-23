@@ -1,4 +1,7 @@
-./: manifest lib{liblua} exe{lua} exe{luac} tests/
+./ : manifest lib{liblua} exe{lua} exe{luac} tests/
+
+./ : doc/doc{**} doc{README}
+
 
 
 ###################################################
