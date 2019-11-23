@@ -1,4 +1,4 @@
-./: manifest lib{liblua} exe{lua} exe{luac}
+./: manifest lib{liblua} exe{lua} exe{luac} tests/
 
 
 ###################################################
