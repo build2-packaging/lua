@@ -10,7 +10,7 @@ tests/: install = false
 ###################################################
 # Lua library (for embedding in C/C++ projects):
 
-lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{*}
+lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{* lua.hpp}
 
 # TODO: ask why these lines are necessary?
 liba{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
