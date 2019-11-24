@@ -1,4 +1,4 @@
-./ : manifest lib{liblua} exe{lua} exe{luac} tests/
+./ : manifest lib{lua} exe{lua} exe{luac} tests/
 
 ./ : doc/doc{**} doc{README}
 
@@ -10,15 +10,15 @@ tests/: install = false
 ###################################################
 # Lua library (for embedding in C/C++ projects):
 
-lib{liblua} : src/c{ * -luac.c -lua.c } src/h{*} src/hxx{*}
+lib{lua} : src/c{ * -luac.c -lua.c } src/h{*} src/hxx{*}
 
 # TODO: ask why these lines are necessary?
-liba{liblua}: cc.export = true # Have to be mentionned otherwise it's not exported??
-libs{liblua}: cc.export = true # Have to be mentionned otherwise it's not exported??
+liba{lua}: cc.export = true # Have to be mentionned otherwise it's not exported??
+libs{lua}: cc.export = true # Have to be mentionned otherwise it's not exported??
 
 if ($cc.target.class == 'windows')
 {
-    libs{liblua}: 
+    libs{lua}: 
     {
         # TODO: report that using cc here makes includes dir not exported/imported.
         cxx.export.poptions += -DLUA_BUILD_AS_DLL
@@ -36,17 +36,17 @@ dirs_to_include = "-I$out_root/src" "-I$src_root/src"
 
 cc.poptions =+ $dirs_to_include
 
-lib{liblua} : cc.export.poptions =+ $dirs_to_include
+lib{lua} : cc.export.poptions =+ $dirs_to_include
 
 ###################################################
 # Lua interpreter:
 
-exe{lua} : src/c{lua} libs{liblua}
+exe{lua} : src/c{lua} libs{lua}
 
 ###################################################
 # Lua compiler:
 
-exe{luac} : src/c{luac} liba{liblua} 
+exe{luac} : src/c{luac} liba{lua} 
 
 ###############
 # Install Setup
