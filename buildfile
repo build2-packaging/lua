@@ -10,13 +10,13 @@ tests/: install = false
 ###################################################
 # Lua library (for embedding in C/C++ projects):
 
-lib{liblua} : src/cxx{ * -luac.c -lua.c } src/hxx{* lua.hpp}
+lib{liblua} : src/c{ * -luac.c -lua.c } src/h{*} src/hxx{*}
 
 # TODO: ask why these lines are necessary?
-liba{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
-libs{liblua}: cxx.export = true # Have to be mentionned otherwise it's not exported??
+liba{liblua}: cc.export = true # Have to be mentionned otherwise it's not exported??
+libs{liblua}: cc.export = true # Have to be mentionned otherwise it's not exported??
 
-if ($cxx.target.class == 'windows')
+if ($cc.target.class == 'windows')
 {
     libs{liblua}: 
     {
@@ -24,25 +24,29 @@ if ($cxx.target.class == 'windows')
         cxx.export.poptions += -DLUA_BUILD_AS_DLL
         c.export.poptions += -DLUA_BUILD_AS_DLL
     }
-    objs{*}: cxx.poptions += -DLUA_BUILD_AS_DLL
+    objs{*}: c.poptions += -DLUA_BUILD_AS_DLL
+}
+else
+{
+    cc.loptions += -lm
+    cc.aoptions += rcu
 }
 
 dirs_to_include = "-I$out_root/src" "-I$src_root/src"
 
-cxx.poptions =+ $dirs_to_include
+cc.poptions =+ $dirs_to_include
 
-# TODO: report that changing cc by cxx here makes includes dir not exported/imported.
 lib{liblua} : cc.export.poptions =+ $dirs_to_include
 
 ###################################################
 # Lua interpreter:
 
-exe{lua} : src/cxx{lua} libs{liblua}
+exe{lua} : src/c{lua} libs{liblua}
 
 ###################################################
 # Lua compiler:
 
-exe{luac} : src/cxx{luac} liba{liblua} 
+exe{luac} : src/c{luac} liba{liblua} 
 
 ###############
 # Install Setup
@@ -53,10 +57,10 @@ lua_public_headers = lua.h luaconf.h lualib.h lauxlib.h lua.hpp
 
 # We only install public headers.
 # TODO: find a better way to do it.
-for public_header : src/hxx{*}
+for public_header : src/h{*}
     $public_header@./src/ : install = false
 
-for public_header : src/hxx{$lua_public_headers}
+for public_header : src/{h hxx}{$lua_public_headers}
     $public_header@./src/ : install = $include_dir
 
 

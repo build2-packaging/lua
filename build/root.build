@@ -1,9 +1,13 @@
+c.std = gnu99
 cxx.std = latest
 
+using c
 using cxx
 
-hxx{*}: extension = h
-cxx{*}: extension = c # We want to make sure the C code works in C++.
+h{*}: extension = h
+c{*}: extension = c
+
+hxx{*}: extension = hpp
 
 # The test target for cross-testing (running tests under Wine, etc).
 #

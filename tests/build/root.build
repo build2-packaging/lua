@@ -1,3 +1,4 @@
+# We want to make sure that a C++ program can use lua library which is in C.
 cxx.std = latest
 
 using cxx
