@@ -28,8 +28,7 @@ if ($cc.target.class == 'windows')
 }
 else
 {
-    cc.loptions += -lm
-    cc.aoptions += rcu
+    cc.libs += -lm
 }
 
 dirs_to_include = "-I$out_root/src" "-I$src_root/src"
