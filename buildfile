@@ -52,15 +52,14 @@ exe{luac} : src/c{luac} liba{lua}
 include_dir = include/
 
 # Public headers listed in makefile:
-lua_public_headers = lua.h luaconf.h lualib.h lauxlib.h lua.hpp
+lua_public_c_headers = lua luaconf lualib lauxlib
+lua_public_cxx_headers = lua
 
 # We only install public headers.
-# TODO: find a better way to do it.
-for public_header : src/h{*}
-    $public_header@./src/ : install = false
+h{*}: install = false
 
-for public_header : src/{h hxx}{$lua_public_headers}
-    $public_header@./src/ : install = $include_dir
+for public_header : src/h{$lua_public_c_headers} src/hxx{$lua_public_cxx_headers}
+  $public_header@./src/ : install = $include_dir
 
 
 # All executables should be installed
