@@ -4,7 +4,9 @@ version: 5.3.5-a.0.z
 summary: Lua is a powerful, efficient, lightweight, embeddable scripting language.
 license: MIT
 url: https://lua.org/
-email: mjklaim@gmail.com
-depends: * build2 >= 0.12.0
-depends: * bpkg >= 0.12.0
+package-url: https://github.com/build2-packaging/lua/
+package-email: mjklaim@gmail.com
+build-email: mjklaim@gmail.com
+depends: * build2 > 0.12.0
+depends: * bpkg > 0.12.0
 
