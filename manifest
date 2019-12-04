@@ -7,6 +7,6 @@ url: https://lua.org/
 package-url: https://github.com/build2-packaging/lua/
 package-email: mjklaim@gmail.com
 build-email: mjklaim@gmail.com
-depends: * build2 > 0.12.0
-depends: * bpkg > 0.12.0
+depends: * build2 >= 0.12.0
+depends: * bpkg >= 0.12.0
 
