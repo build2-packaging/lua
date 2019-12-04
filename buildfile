@@ -1,4 +1,6 @@
-./ : manifest lib{lua} exe{lua} exe{luac} tests/
+# Work around build2 issue 71 (remember to also drop bin/ below when removing).
+#./ : manifest lib{lua} exe{lua} exe{luac} tests/
+./ : manifest lib{lua} bin/exe{lua} bin/exe{luac} tests/
 
 ./ : doc/doc{**} doc{README}
 
@@ -40,12 +42,12 @@ lib{lua} : cc.export.poptions =+ $dirs_to_include
 ###################################################
 # Lua interpreter:
 
-exe{lua} : src/c{lua} libs{lua}
+bin/exe{lua} : src/c{lua} libs{lua} fsdir{bin/}
 
 ###################################################
 # Lua compiler:
 
-exe{luac} : src/c{luac} liba{lua} 
+bin/exe{luac} : src/c{luac} liba{lua} fsdir{bin/}
 
 ###############
 # Install Setup
@@ -64,3 +66,4 @@ for public_header : src/h{$lua_public_c_headers} src/hxx{$lua_public_cxx_headers
 
 # All executables should be installed
 exe{*} : install = bin/
+bin/exe{*} : install = bin/
