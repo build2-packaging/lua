@@ -1,24 +1,5 @@
-Lua
----
 
-This is the Build2 package (https://build2.org) for the Lua project (https://lua.org).
-
-This repository contains the files in the archive of a published lua version (see `./manifest` or in this file below for the exact version packaged).
-This repository does not contain the content of the archive providing the tests. We intend to add them in the future.
-
-At the moment the only test done here just makes sure that the package is consumable and the headers found by user projects.
-
-Released (tagged) versions will be published on https://cppget.org so if your project uses Build2 you can easilly use it.
-
-Maintainers:
- - A. Joël Lamotte mjklaim@gmail.com
-
-Below the content of the Readme file from the lua archive:
-
-
-------------------------------------------------------
-
-This is Lua 5.3.5, released on 26 Jun 2018.
+This is Lua 5.4.0, released on 18 Jun 2020.
 
 For installation instructions, license details, and
 further information about Lua, see doc/readme.html.
