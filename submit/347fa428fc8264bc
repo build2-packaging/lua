@@ -1,0 +1,6 @@
+: 1
+name: lua
+version: 5.4.2
+summary: Lua is a powerful, efficient, lightweight, embeddable scripting\
+ language.
+license: MIT
