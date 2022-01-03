@@ -20,7 +20,7 @@ libs{lua}: cc.export = true # Have to be mentionned otherwise it's not exported?
 
 if ($cc.target.class == 'windows')
 {
-    libs{lua}: 
+    libs{lua}:
     {
         # TODO: report that using cc here makes includes dir not exported/imported.
         cxx.export.poptions += -DLUA_BUILD_AS_DLL
@@ -31,6 +31,7 @@ if ($cc.target.class == 'windows')
 else
 {
     cc.libs += -lm
+    cc.poptions += -D_GNU_SOURCE # Hides this warning: loslib.c:(.text+0x3b1): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
 }
 
 dirs_to_include = "-I$out_root/src" "-I$src_root/src"
