@@ -20,7 +20,7 @@ libs{lua}: cc.export = true # Have to be mentionned otherwise it's not exported?
 
 if ($cc.target.class == 'windows')
 {
-    libs{lua}: 
+    libs{lua}:
     {
         # TODO: report that using cc here makes includes dir not exported/imported.
         cxx.export.poptions += -DLUA_BUILD_AS_DLL
@@ -30,6 +30,7 @@ if ($cc.target.class == 'windows')
 }
 else
 {
+    cc.poptions = -DLUA_USE_POSIX
     cc.libs += -lm
 }
 
