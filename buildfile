@@ -30,7 +30,7 @@ if ($cc.target.class == 'windows')
 }
 else
 {
-    cc.poptions = -DLUA_USE_POSIX
+    cc.poptions += -DLUA_USE_POSIX
     cc.libs += -lm
 }
 
