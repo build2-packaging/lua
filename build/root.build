@@ -1,4 +1,4 @@
-c.std = gnu99
+c.std = 99
 cxx.std = latest
 
 using c
