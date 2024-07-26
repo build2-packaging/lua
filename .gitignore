@@ -1,21 +1,44 @@
-.bdep/
-
-# Compiler/linker output.
+# Use whitelisting and ignore everything by default.
 #
-*.d
-*.t
-*.i
-*.ii
-*.o
-*.obj
-*.so
-*.dll
-*.a
-*.lib
-*.exp
-*.pdb
-*.ilk
-*.exe
-*.exe.dlls/
-*.exe.manifest
-*.pc
+*
+
+# Don't ignore directories.
+#
+!*/
+
+# Don't ignore Git-specific files.
+#
+!.git*
+
+# Allow every file in 'upstream' directory.
+#
+!upstream
+!upstream/**
+
+# Don't ignore license and documentation files.
+#
+!*.md
+!LICENSE
+
+# Don't ignore default C++ file extensions.
+#
+!*.h
+!*.c
+!*.cpp
+
+# Don't ignore source generation files.
+#
+!*.in
+
+# Add original source files that might have been changed.
+#
+!*.orig
+
+# Don't ignore standard build2 files.
+#
+!buildfile
+!bootstrap.build
+!export.build
+!root.build
+!*manifest
+!*testscript
