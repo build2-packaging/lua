@@ -1,11 +1,22 @@
 : 1
 name: lua
 version: 5.4.7-a.0.z
-summary: Lua is a powerful, efficient, lightweight, embeddable scripting language.
+type: exe
+language: c
+project: lua
+summary: Embeddable scripting language, interpreter and compiler
 license: MIT
-url: https://lua.org/
-package-url: https://github.com/build2-packaging/lua/
-package-email: mjklaim@gmail.com
-depends: * build2 >= 0.12.0
-depends: * bpkg >= 0.12.0
 
+description-file: README
+url: https://lua.org/home.html
+doc-url: https://lua.org/docs.html
+email: lua-l@googlegroups.com
+
+package-description-file: PACKAGE-README.md
+package-url: https://github.com/build2-packaging/lua
+package-email: packaging@build2.org
+
+depends: * build2 >= 0.17.0
+depends: * bpkg >= 0.17.0
+
+depends: liblua == $

@@ -1,2 +1,4 @@
 : 1
 location: liblua/
+:
+location: lua/

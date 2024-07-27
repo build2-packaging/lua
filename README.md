@@ -17,15 +17,16 @@ If the stable section of `cppget.org` is not an option then add this Git reposit
     role: prerequisite
     location: https://github.com/build2-packaging/lua.git
 
-Add the respective dependency in your project's `manifest` file to make the package available for import.
+Add the respective dependency in your project's `manifest` file to make the required packages available for import.
 
     depends: liblua ^5.4.7
     depends: lua ^5.4.7
 
-Then use the following line in your `buildfile` to import the library.
+Then use the following lines in your `buildfile` to import library and executables.
 
-    import lua = liblua%lib{lua}
-    import luac = lua%exe{lua}
+    import lualib = liblua%lib{lua}
+    import! luac = lua%exe{luac}
+    import! lua = lua%exe{luac}
 
 ## Configuration
 There are no configuration options available.

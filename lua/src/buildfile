@@ -1,0 +1,5 @@
+import static_lua = liblua%liba{lua}
+import shared_lua = liblua%libs{lua}
+
+./: exe{luac}: c{luac} $static_lua
+./: exe{lua}: c{lua} $shared_lua
