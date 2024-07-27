@@ -18,12 +18,14 @@
 # Don't ignore license and documentation files.
 #
 !*.md
+!README
 !LICENSE
 
 # Don't ignore default C++ file extensions.
 #
 !*.h
 !*.c
+!*.hpp
 !*.cpp
 
 # Don't ignore source generation files.

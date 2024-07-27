@@ -1,0 +1,36 @@
+# Headers and Sources
+#
+lib{lua}: {hxx h c}{**}
+
+# Build and Export Options
+#
+cc.poptions =+ "-I$src_base"
+c.coptions += -DLUA_COMPAT_5_3
+lib{lua}: cc.export.poptions = "-I$src_base"
+#
+if ($cc.target.class == 'windows')
+{
+  objs{*}: c.poptions += -DLUA_BUILD_AS_DLL
+  libs{lua}: cc.export.poptions += -DLUA_BUILD_AS_DLL
+}
+else
+{
+  cc.poptions += -DLUA_USE_POSIX
+  cc.libs += -lm
+}
+
+# Versioning
+#
+if $version.pre_release
+  lib{lua}: bin.lib.version = "-$version.project_id"
+else
+  lib{lua}: bin.lib.version = "-$version.major.$version.minor"
+
+# Installation
+#
+h{*}: install = false
+hxx{*}: install = include/
+h{lua}@./: install = include/
+h{luaconf}@./: install = include/
+h{lualib}@./: install = include/
+h{lauxlib}@./: install = include/
