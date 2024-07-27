@@ -1,0 +1,4 @@
+# Lua Scripts
+#
+define lua: file
+lua{*}: extension = lua

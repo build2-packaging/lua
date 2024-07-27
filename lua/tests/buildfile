@@ -1,0 +1,8 @@
+import! lua = lua%exe{lua}
+
+tests = lua{*}
+
+# `lua` and `tests` must be provided as prerequisites
+# to allow the deduction of their paths inside the testscript.
+#
+./: $lua $tests testscript

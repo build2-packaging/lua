@@ -44,3 +44,7 @@
 !root.build
 !*manifest
 !*testscript
+
+# Don't ignore Lua files.
+#
+!*.lua
