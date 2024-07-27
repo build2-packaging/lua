@@ -31,7 +31,8 @@ Then use the following line in your `buildfile` to import the library.
 There are no configuration options available.
 
 ## Issues and Notes
-- Lua's source code for releases is not provided as a git repository and needs to be hard-copied into the `upstream` directory.
+- Lua's source code for releases is not provided as a git repository and needs to be hard-copied into the `upstream` directory from [here](https://lua.org/download.html).
+- Lua's test suite for releases is not provided as a git repository and needs to be hard-copied into the `upstream-tests` directory from [here](https://www.lua.org/tests/).
 - The `LICENSE` file was hard-copied from [Lua's website](https://lua.org/license.html).
 
 ## Contributing

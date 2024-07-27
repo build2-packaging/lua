@@ -10,10 +10,10 @@
 #
 !.git*
 
-# Allow every file in 'upstream' directory.
+# Allow all files from upstream sources.
 #
-!upstream
-!upstream/**
+!upstream*
+!upstream*/**
 
 # Don't ignore license and documentation files.
 #
