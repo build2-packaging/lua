@@ -1,8 +1,0 @@
-lua = $path($lua)
-
-: Basic Tests
-:
-for x: $tests
-  ln -s $path($x) ./
-end;
-$lua -e"_U=true" all.lua 1>&2 2>| == 0

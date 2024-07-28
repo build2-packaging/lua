@@ -1,2 +1,2 @@
 import lua = liblua%lib{lua}
-exe{tests}: c{*} $lua
+exe{tests}: cxx{*} $lua

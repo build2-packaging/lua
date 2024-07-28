@@ -2,3 +2,5 @@
 location: liblua/
 :
 location: lua/
+:
+location: lua-tests/

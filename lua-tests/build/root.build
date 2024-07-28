@@ -7,9 +7,13 @@ using cxx
 h{*}: extension = h
 c{*}: extension = c
 
-hxx{*}: extension = hpp
 cxx{*}: extension = cpp
-
+hxx{*}: extension = hpp
 hxx{*}: cxx.importable = false
 
 test.target = $c.target
+
+# Lua Script File Definition
+#
+define lua: file
+lua{*}: extension = lua

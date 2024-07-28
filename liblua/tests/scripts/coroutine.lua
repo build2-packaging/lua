@@ -1,1 +1,0 @@
-../../../upstream-tests/coroutine.lua

@@ -1,1 +1,0 @@
-../../../upstream-tests/locals.lua
