@@ -3,4 +3,19 @@ $out_root/
   include src/
 }
 
-export $out_root/src/$import.target
+# Check import target for `lib{lua}` and variants to allow
+# for backwards compatibility when using `lua%lib{lua}`.
+# Re-export `lib{lua}` from this package when needed.
+#
+# See: https://github.com/build2/build2/issues/331
+#
+if ($import.target == lib{lua}  || \
+    $import.target == liba{lua} || \
+    $import.target == libs{lua})
+{
+  export $directory($($out_root/src/ liblua))/$import.target
+}
+else
+{
+  export $out_root/src/$import.target
+}
