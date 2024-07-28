@@ -2,7 +2,7 @@ import! lua = lua%exe{lua}
 
 tests = lua{*}
 
-# `lua` and `tests` must be provided as prerequisites
+# Variables `lua` and `tests` must be provided as prerequisites
 # to allow the deduction of their paths inside the testscript.
 #
-./: libs/ $lua $tests testscript
+./: $lua $tests testscript
