@@ -1,0 +1,1 @@
+../../../upstream-tests/utf8.lua

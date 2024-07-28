@@ -14,3 +14,12 @@ hxx{*}: cxx.importable = false
 test.target = $cxx.target
 
 exe{*}: test = true
+
+# Lua Library
+#
+import lua = liblua%lib{lua}
+
+# Lua Script Files
+#
+define lua: file
+lua{*}: extension = lua

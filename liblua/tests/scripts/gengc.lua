@@ -1,0 +1,1 @@
+../../../upstream-tests/gengc.lua

@@ -1,4 +1,1 @@
-import lua = liblua%lib{lua}
-
-./: exe{cpp-smoke-test}: cxx{*} $lua
-./: exe{c-smoke-test}: c{*} $lua
+./: {*/ -build/}
