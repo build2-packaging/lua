@@ -12,7 +12,11 @@ poptions = -DLUA_COMPAT_5_3
 switch ($cc.target.class)
 {
   case 'windows'
-    poptions += -DLUA_USE_WINDOWS
+    # `luaconf.h` automatically deduces Windows as target platform.
+    # Thus, appending the following preprocessor directive
+    # leads to `macro redefine` warnings/errors and is omitted.
+    #
+    # poptions += -DLUA_USE_WINDOWS
   case 'linux'
     poptions += -DLUA_USE_LINUX
   case 'macos'

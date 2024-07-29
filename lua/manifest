@@ -20,3 +20,5 @@ depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
 
 depends: liblua == $
+
+tests: lua-tests == $

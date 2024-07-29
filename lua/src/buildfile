@@ -2,11 +2,13 @@
 # to export it for backwards compatibility as `lua%lib{lua}`.
 # For installation, it must be stated
 # as a prerequisite to this directory.
+# Unfortunately, this also affects operations, such as `clean`,
+# to also affect `liblua` package when applied to `lua` package.
 #
 # See: https://github.com/build2/build2/issues/331
 #
 import! [rule_hint=c.link] liblua = liblua%lib{lua}
-# ./: $liblua
+./: $liblua
 
 # Lua Compiler
 #
