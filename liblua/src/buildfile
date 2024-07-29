@@ -5,19 +5,32 @@ lib{lua}: {hxx h c}{**}
 # Build and Export Options
 #
 cc.poptions =+ "-I$src_base"
-c.coptions += -DLUA_COMPAT_5_3
 lib{lua}: cc.export.poptions = "-I$src_base"
+#
+poptions = -DLUA_COMPAT_5_3
+#
+switch ($cc.target.class)
+{
+  case 'windows'
+    poptions += -DLUA_USE_WINDOWS
+  case 'linux'
+    poptions += -DLUA_USE_LINUX
+  case 'macos'
+    poptions += -DLUA_USE_MACOSX
+  default
+    poptions += -DLUA_USE_POSIX -DLUA_USE_DLOPEN
+}
+#
+cc.poptions += $poptions
+lib{lua}: cc.export.poptions += $poptions
 #
 if ($cc.target.class == 'windows')
 {
-  objs{*}: c.poptions += -DLUA_BUILD_AS_DLL
+  objs{*}: cc.poptions += -DLUA_BUILD_AS_DLL
   libs{lua}: cc.export.poptions += -DLUA_BUILD_AS_DLL
 }
 else
-{
-  cc.poptions += -DLUA_USE_POSIX
-  cc.libs += -lm
-}
+  cc.libs += -lm -ldl
 
 # Versioning
 #

@@ -7,4 +7,4 @@ c{*}: extension = c
 
 test.target = $c.target
 
-config [bool] config.lua.readline ?= false
+exe{*}: test = true

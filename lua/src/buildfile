@@ -6,10 +6,21 @@
 # See: https://github.com/build2/build2/issues/331
 #
 import! [rule_hint=c.link] liblua = liblua%lib{lua}
-./: $liblua
+# ./: $liblua
 
-import static_lua = liblua%liba{lua}
-import shared_lua = liblua%libs{lua}
+# Lua Compiler
+#
+import luac_libs = liblua%liba{lua}
+./: exe{luac}: c{luac} $luac_libs
 
-./: exe{luac}: c{luac} $static_lua
-./: exe{lua}: c{lua} $shared_lua
+# Lua Interpreter
+#
+import lua_libs = liblua%libs{lua}
+
+if $config.lua.readline
+{
+  import lua_libs += readline%lib{readline}
+  obj{lua}: c.poptions += -DLUA_USE_READLINE
+}
+
+./: exe{lua}: c{lua} $lua_libs
