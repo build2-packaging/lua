@@ -3,6 +3,15 @@
 This project is a [build2](https://build2.org) package repository that provides access to [Lua](https://lua.org/home.html), a powerful, efficient, lightweight, embeddable scripting language.
 It supports procedural programming, object-oriented programming, functional programming, data-driven programming, and data description.
 
+[![Official](https://img.shields.io/website/https/www.lua.org?down_message=offline&label=Official&style=for-the-badge&up_color=blue&up_message=online)](https://www.lua.org/)
+[![build2](https://img.shields.io/website/https/github.com/build2-packaging/lua.svg?down_message=offline&label=build2&style=for-the-badge&up_color=blue&up_message=online)](https://github.com/build2-packaging/lua)
+
+[![cppget.org](https://img.shields.io/website/https/cppget.org/liblua.svg?down_message=offline&label=liblua+cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/liblua)
+[![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/liblua.svg?down_message=empty&down_color=blue&label=liblua+queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/liblua)
+
+[![cppget.org](https://img.shields.io/website/https/cppget.org/lua.svg?down_message=offline&label=lua+cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/lua)
+[![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/lua.svg?down_message=empty&down_color=blue&label=lua+queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/lua)
+
 ## Usage
 Make sure to add the stable section of the `cppget.org` repository to your project's `repositories.manifest` to be able to fetch this package.
 
