@@ -1,6 +1,6 @@
 # Use deprecated import of `lib{lua}` from `lua` package.
 #
-import liblua = lua%lib{lua}
+import! [rule_hint=c.link] liblua = lua%lib{lua}
 
 scripts_dir = [dir_path] ../../scripts/
 include $scripts_dir
