@@ -48,3 +48,7 @@
 # Don't ignore Lua files.
 #
 !*.lua
+
+# Allow documentation folder.
+#
+!lua/doc

@@ -54,7 +54,8 @@ If `readline` is available on your target platform, it is recommended to enable 
 - Lua's source code for releases is not provided as a git repository and needs to be hard-copied into the `upstream` directory from [here](https://lua.org/download.html).
 - Lua's test suite for releases is not provided as a git repository and needs to be hard-copied into the `upstream-tests` directory from [here](https://www.lua.org/tests/).
 - The `LICENSE` file was hard-copied from [Lua's website](https://lua.org/license.html).
-- Lua's compiler and interpreter have not been split into separate packages to reduce complexity and importation issues. In most cases, interpreter and compiler will be used together at the same time anyway.
+- Lua's compiler and interpreter have not been split into separate packages to reduce complexity and importation issues based on backwards compatibility. In most cases, interpreter and compiler will be used together at the same time anyway.
+- Lua's documentation files will only be installed with the `lua` package to prevent redundant files in various directories after installation. An explicit installation of Lua will most likely require all components anyway.
 - There are no sophisticated upstream tests for Lua's C library. As such, we only provide two smoke tests.
 - So far, the Lua compiler `luac` is only compiled and not further tested. There are also no real upstream tests for it.
 - The tests package does not run Lua's complete or internal test suites as these are expected to fail for various reasons as stated [here](https://www.lua.org/tests/). Instead, only the basic tests based on Lua scripts are executed.
