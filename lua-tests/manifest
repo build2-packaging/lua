@@ -19,4 +19,4 @@ package-email: packaging@build2.org
 depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
 
-depends: lua == $
+# depends: lua == $
