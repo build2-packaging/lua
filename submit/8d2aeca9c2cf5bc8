@@ -1,0 +1,8 @@
+: 1
+name: lua
+version: 5.4.7
+type: exe
+language: c
+project: lua
+summary: Embeddable scripting language, interpreter and compiler
+license: MIT
