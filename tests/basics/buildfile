@@ -1,3 +1,0 @@
-import libs = lua%lib{lua}
-
-exe{driver}: {hxx ixx txx cxx}{**} $libs testscript{**}

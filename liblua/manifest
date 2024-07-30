@@ -1,0 +1,20 @@
+: 1
+name: liblua
+version: 5.4.7-a.0.z
+type: lib
+language: c
+project: lua
+summary: Embeddable scripting language, library
+license: MIT
+
+description-file: README
+url: https://lua.org/home.html
+doc-url: https://lua.org/docs.html
+email: lua-l@googlegroups.com
+
+package-description-file: PACKAGE-README.md
+package-url: https://github.com/build2-packaging/lua
+package-email: packaging@build2.org
+
+depends: * build2 >= 0.17.0
+depends: * bpkg >= 0.17.0

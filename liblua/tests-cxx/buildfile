@@ -1,0 +1,2 @@
+import lua = liblua%lib{lua}
+exe{tests}: cxx{*} $lua

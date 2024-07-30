@@ -1,0 +1,56 @@
+# Headers and Sources
+#
+lib{lua}: {hxx h c}{**}
+
+# Build and Export Options
+#
+cc.poptions =+ "-I$src_base"
+lib{lua}: cc.export.poptions = "-I$src_base"
+#
+poptions = -DLUA_COMPAT_5_3
+#
+switch ($cc.target.class)
+{
+  case 'windows'
+  {
+    # `luaconf.h` automatically deduces Windows as target platform. Thus,
+    # appending the following preprocessor directive leads to `macro redefine`
+    # warnings/errors and is omitted. The scope is important to not fall
+    # through to the next case block.
+    #
+    # poptions += -DLUA_USE_WINDOWS
+  }
+  case 'linux'
+    poptions += -DLUA_USE_LINUX
+  case 'macos'
+    poptions += -DLUA_USE_MACOSX
+  default
+    poptions += -DLUA_USE_POSIX -DLUA_USE_DLOPEN
+}
+#
+cc.poptions += $poptions
+lib{lua}: cc.export.poptions += $poptions
+#
+if ($cc.target.class == 'windows')
+{
+  objs{*}: cc.poptions += -DLUA_BUILD_AS_DLL
+  libs{lua}: cc.export.poptions += -DLUA_BUILD_AS_DLL
+}
+else
+  cc.libs += -lm -ldl
+
+# Versioning
+#
+if $version.pre_release
+  lib{lua}: bin.lib.version = "-$version.project_id"
+else
+  lib{lua}: bin.lib.version = "-$version.major.$version.minor"
+
+# Installation
+#
+h{*}: install = false
+hxx{*}: install = include/
+h{lua}@./: install = include/
+h{luaconf}@./: install = include/
+h{lualib}@./: install = include/
+h{lauxlib}@./: install = include/

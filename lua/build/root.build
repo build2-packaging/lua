@@ -1,0 +1,14 @@
+c.std = 99
+
+using c
+
+h{*}: extension = h
+c{*}: extension = c
+
+test.target = $c.target
+
+# Configuration Variables
+
+# Whether to use GNU `readline` library for the Lua interpreter `exe{lua}`.
+#
+config [bool] config.lua.readline ?= false

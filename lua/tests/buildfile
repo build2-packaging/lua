@@ -1,0 +1,4 @@
+# Test deprecated import of `lib{lua}` from `lua` package.
+#
+import lua = lua%lib{lua}
+exe{tests}: c{*} $lua

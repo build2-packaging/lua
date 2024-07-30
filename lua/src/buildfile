@@ -1,0 +1,27 @@
+# Import `liblua%lib{lua}` immediately to export it as `lua%lib{lua}` for
+# backward compatibility. As for the installation case, declare it as a
+# prerequisite for this directory. Note that this will affect operations like
+# `clean`, which in turn will impact the `liblua` package when applied to the
+# `lua` package.
+#
+# See: https://github.com/build2/build2/issues/331
+#
+import! [rule_hint=c.link] liblua = liblua%lib{lua}
+./: $liblua
+
+# Lua Compiler
+#
+import luac_libs = liblua%liba{lua}
+./: exe{luac}: c{luac} $luac_libs
+
+# Lua Interpreter
+#
+import lua_libs = liblua%libs{lua}
+
+if $config.lua.readline
+{
+  import lua_libs += readline%lib{readline}
+  obj{lua}: c.poptions += -DLUA_USE_READLINE
+}
+
+./: exe{lua}: c{lua} $lua_libs

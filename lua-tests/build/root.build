@@ -1,0 +1,19 @@
+c.std = 99
+cxx.std = latest
+
+using c
+using cxx
+
+h{*}: extension = h
+c{*}: extension = c
+
+cxx{*}: extension = cpp
+hxx{*}: extension = hpp
+hxx{*}: cxx.importable = false
+
+test.target = $c.target
+
+# Lua Script File Definition
+#
+define lua: file
+lua{*}: extension = lua

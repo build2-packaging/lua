@@ -1,0 +1,4 @@
+for x: $scripts
+  ln -s $path($x) ./
+end;
+$* all.lua 1>&2 2>- == 0
