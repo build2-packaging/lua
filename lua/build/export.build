@@ -3,9 +3,9 @@ $out_root/
   include src/
 }
 
-# Check import target for `lib{lua}` and variants to allow
-# for backwards compatibility when using `lua%lib{lua}`.
-# Re-export `lib{lua}` from this package when needed.
+# Check import target for `lib{lua}` and variants to allow for backwards
+# compatibility when using `lua%lib{lua}`. Re-export `lib{lua}` from this
+# package when needed.
 #
 # See: https://github.com/build2/build2/issues/331
 #

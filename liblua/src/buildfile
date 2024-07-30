@@ -13,10 +13,10 @@ switch ($cc.target.class)
 {
   case 'windows'
   {
-    # `luaconf.h` automatically deduces Windows as target platform.
-    # Thus, appending the following preprocessor directive
-    # leads to `macro redefine` warnings/errors and is omitted.
-    # The scope is important to not fall through to the next case block.
+    # `luaconf.h` automatically deduces Windows as target platform. Thus,
+    # appending the following preprocessor directive leads to `macro redefine`
+    # warnings/errors and is omitted. The scope is important to not fall
+    # through to the next case block.
     #
     # poptions += -DLUA_USE_WINDOWS
   }
