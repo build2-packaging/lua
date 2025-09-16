@@ -1,6 +1,6 @@
 : 1
 name: liblua
-version: 5.4.8-a.0.z
+version: 5.4.8
 type: lib
 language: c
 project: lua
