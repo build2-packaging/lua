@@ -1,0 +1,8 @@
+: 1
+name: lua-tests
+version: 5.4.8
+type: exe
+language: c
+project: lua
+summary: Embeddable scripting language, tests
+license: MIT

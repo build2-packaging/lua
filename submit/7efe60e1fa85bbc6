@@ -1,0 +1,8 @@
+: 1
+name: liblua
+version: 5.4.8
+type: lib
+language: c
+project: lua
+summary: Embeddable scripting language, library
+license: MIT
