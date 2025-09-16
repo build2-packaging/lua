@@ -8,7 +8,7 @@ This repository is a community-maintained effort and is not officially endorsed 
 ## Packages
 
 | Package | Summary | Status |
-|---|---|---|---|
+|---|---|---|
 | **[`liblua`](liblua/PACKAGE-README.md)** | Lua C/C++ Library | [![cppget.org](https://img.shields.io/website/https/cppget.org/liblua.svg?down_message=offline&label=cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/liblua) [![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/liblua.svg?down_message=empty&down_color=blue&label=queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/liblua) |
 | **[`lua`](lua/PACKAGE-README.md)** | Lua Interpreter and Compiler | [![cppget.org](https://img.shields.io/website/https/cppget.org/lua.svg?down_message=offline&label=cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/lua) [![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/lua.svg?down_message=empty&down_color=blue&label=queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/lua) |
 
@@ -36,7 +36,7 @@ For example:
 
 ## Development Setup
 The development setup for this repository uses the standard `bdep`-based workflow.
-For guidance on package maintenance, please see [The `build2` Toolchain Introduction](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml), [The `build2` Build System Manual](https://build2.org/build2/doc/build2-build-system-manual.xhtml), and [The `build2` Packaging Guidelines](https://build2.org/build2-toolchain/doc/build2-toolchain-packaging.xhtml).
+For general information and guidance on package maintenance, please see the [`build2` Documentation](https://build2.org/doc.xhtml).
 
 First, clone the repository via SSH or HTTPS.
 
@@ -62,7 +62,7 @@ Afterwards, use `b` or `bdep` to build, test, install, and distribute the packag
     - The `lua-tests` package executes only the basic Lua script tests. The complete or internal test suite is not used as it is expected to fail by design in this build context (see [here](https://www.lua.org/tests/)).
     - On Windows (MSVC/Clang), the basic tests are known to fail in unoptimized builds, likely due to an intentional stack overflow test.
 
-- **Metadata:** Currently, the `lua` and `luac` executables in the `lua` package do not provide any `build2` metadata.
+- Currently, the `lua` and `luac` executables in the `lua` package do not provide any `build2` metadata.
 
 ## Contributing
 Contributions are welcome and greatly appreciated!

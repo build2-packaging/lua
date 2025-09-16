@@ -15,7 +15,7 @@ To make `liblua` available for import, add the following dependency to the `mani
 ### `buildfile`
 To import the contained library, use the following declaration in your `buildfile`.
 
-    import liblua = liblua%lib{lua}  # Library
+    import liblua = liblua%lib{lua}
 
 ### C/C++ Header Inclusion
 Finally, include the necessary Lua headers in your source code.

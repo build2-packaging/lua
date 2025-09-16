@@ -13,7 +13,7 @@ To make `lua` available for import, add the following (build-time) dependency to
     depends: lua ^5.4.8
 
 ### `buildfile` and Importable Targets
-To import the interpreter and compiler, use the following declaration in your `buildfile`.
+To import the interpreter and compiler, use the following declarations in your `buildfile`.
 
     import lua = lua%exe{lua}        # Interpreter
     import luac = lua%exe{luac}      # Compiler
