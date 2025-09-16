@@ -5,8 +5,6 @@ Lua is intended to be used both as an embeddable language for any program that n
 
 This repository is a community-maintained effort and is not officially endorsed by the Lua authors.
 
-## Packages
-
 | Package | Summary | Status |
 |---|---|---|
 | **[`liblua`](liblua/PACKAGE-README.md)** | Lua C/C++ Library | [![cppget.org](https://img.shields.io/website/https/cppget.org/liblua.svg?down_message=offline&label=cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/liblua) [![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/liblua.svg?down_message=empty&down_color=blue&label=queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/liblua) |
