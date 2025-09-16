@@ -1,67 +1,72 @@
-# build2 Package for Lua
+# build2 Package Repository for Lua
 
-This project is a [build2](https://build2.org) package repository that provides access to [Lua](https://lua.org/home.html), a powerful, efficient, lightweight, embeddable scripting language.
-It supports procedural programming, object-oriented programming, functional programming, data-driven programming, and data description.
+This is a [build2](https://build2.org) package repository for the [Lua](https://lua.org/home.html) scripting language.
+Lua is intended to be used both as an embeddable language for any program that needs one, and as a lightweight and efficient stand-alone language.
 
-[![Official](https://img.shields.io/website/https/www.lua.org?down_message=offline&label=Official&style=for-the-badge&up_color=blue&up_message=online)](https://www.lua.org/)
-[![build2](https://img.shields.io/website/https/github.com/build2-packaging/lua.svg?down_message=offline&label=build2&style=for-the-badge&up_color=blue&up_message=online)](https://github.com/build2-packaging/lua)
+This repository is a community-maintained effort and is not officially endorsed by the Lua authors.
 
-[![cppget.org](https://img.shields.io/website/https/cppget.org/liblua.svg?down_message=offline&label=liblua+cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/liblua)
-[![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/liblua.svg?down_message=empty&down_color=blue&label=liblua+queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/liblua)
+## Packages
 
-[![cppget.org](https://img.shields.io/website/https/cppget.org/lua.svg?down_message=offline&label=lua+cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/lua)
-[![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/lua.svg?down_message=empty&down_color=blue&label=lua+queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/lua)
+| Package | Summary | Status |
+|---|---|---|---|
+| **[`liblua`](liblua/PACKAGE-README.md)** | Lua C/C++ Library | [![cppget.org](https://img.shields.io/website/https/cppget.org/liblua.svg?down_message=offline&label=cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/liblua) [![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/liblua.svg?down_message=empty&down_color=blue&label=queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/liblua) |
+| **[`lua`](lua/PACKAGE-README.md)** | Lua Interpreter and Compiler | [![cppget.org](https://img.shields.io/website/https/cppget.org/lua.svg?down_message=offline&label=cppget.org&style=for-the-badge&up_color=blue&up_message=online)](https://cppget.org/lua) [![queue.cppget.org](https://img.shields.io/website/https/queue.cppget.org/lua.svg?down_message=empty&down_color=blue&label=queue.cppget.org&style=for-the-badge&up_color=orange&up_message=running)](https://queue.cppget.org/lua) |
 
 ## Usage
-Make sure to add the stable section of the `cppget.org` repository to your project's `repositories.manifest` to be able to fetch the packages.
+If you want to use one of the Lua packages in your `build2`-based project, add an appropriate repository manifest to your project's `repositories.manifest` and refer to the accompanying package descriptions.
+
+### `repositories.manifest`
+To be able to fetch this repository's packages, add one of the following prerequisites to your project's `repositories.manifest`.
+
+**Option A: `cppget.org` (Recommended)**
+
+Based on your project's stability requirements, choose either the [`stable` section](https://cppget.org/?about#pkg%3Acppget.org%2Fstable) for thoroughly tested versions or the [`testing` section](https://cppget.org/?about#pkg%3Acppget.org%2Ftesting) for the latest releases before they are marked as stable.
+For example:
 
     :
     role: prerequisite
     location: https://pkg.cppget.org/1/stable
     # trust: ...
 
-If the stable section of `cppget.org` is not an option then add this Git repository itself instead as a prerequisite.
+**Option B: Git Repository**
 
     :
     role: prerequisite
     location: https://github.com/build2-packaging/lua.git
 
-Add the respective dependencies in your project's `manifest` file to make the required packages available for import.
+## Development Setup
+The development setup for this repository uses the standard `bdep`-based workflow.
+For guidance on package maintenance, please see [The `build2` Toolchain Introduction](https://build2.org/build2-toolchain/doc/build2-toolchain-intro.xhtml), [The `build2` Build System Manual](https://build2.org/build2/doc/build2-build-system-manual.xhtml), and [The `build2` Packaging Guidelines](https://build2.org/build2-toolchain/doc/build2-toolchain-packaging.xhtml).
 
-    depends: liblua ^5.4.7  # C Library for Embedding Lua
-    depends: lua ^5.4.7     # Lua Interpreter and Compiler
+First, clone the repository via SSH or HTTPS.
 
-Then use the following lines in your `buildfile` to import library and executables.
+    git clone --recurse https://github.com/build2-packaging/lua.git  # HTTPS
+    git clone --recurse git@github.com:build2-packaging/lua.git      # SSH
 
-    import liblua = liblua%lib{lua}  # Library
-    import luac = lua%exe{luac}      # Compiler
-    import lua = lua%exe{luac}       # Interpreter
+Inside the repository's directory, initialize your build configuration.
 
-For backwards compatibility to earlier package versions, use the following line to import `lib{lua}` from the `lua` package directly.
-This is deprecated and should not be used for new projects.
+    bdep init -C @gcc cc config.cxx=g++ config.install.root=../.install config.dist.root=../.dist
 
-    import liblua = lua%lib{lua}
-
-## Configuration
-
-### Use of GNU `readline` for Lua Interpreter
-The use of the GNU `readline` library for the Lua interpreter is disabled by default to reduce importation issues during CI runs.
-If `readline` is available on your target platform, it is recommended to enable it to improve editing capabilities on the Lua command line.
-
-    config [bool] config.lua.readline ?= false
+Afterwards, use `b` or `bdep` to build, test, install, and distribute the packages.
 
 ## Issues and Notes
-- Lua's source code for releases is not provided as a git repository and needs to be hard-copied into the `upstream` directory from [here](https://lua.org/download.html).
-- Lua's test suite for releases is not provided as a git repository and needs to be hard-copied into the `upstream-tests` directory from [here](https://www.lua.org/tests/).
-- The `LICENSE` file was hard-copied from [Lua's website](https://lua.org/license.html).
-- Lua's compiler and interpreter have not been split into separate packages to reduce complexity and importation issues based on backwards compatibility. In most cases, interpreter and compiler will be used together at the same time anyway.
-- Lua's documentation files will only be installed with the `lua` package to prevent redundant files in various directories after installation. An explicit installation of Lua will most likely require all components anyway.
-- There are no sophisticated upstream tests for Lua's C library. As such, we only provide two smoke tests.
-- So far, the Lua compiler `luac` is only compiled and not further tested. There are also no real upstream tests for it.
-- The tests package does not run Lua's complete or internal test suites as these are expected to fail for various reasons as stated [here](https://www.lua.org/tests/). Instead, only the basic tests based on Lua scripts are executed.
-- Lua's basic tests fail for unoptimized builds on Windows with MSVC and Clang. This is most likely caused by an intentional stack overflow in the basics tests scripts that might not be properly caught.
+- **Upstream Sources:** Lua's source code and test suite are not available as versioned Git repositories. They are manually copied into the `upstream/` and `upstream-tests/` directories from the [official download](https://lua.org/download.html) and [testing](https://www.lua.org/tests/) pages. The `LICENSE` file is also copied from the [Lua website](https://lua.org/license.html). For each version update, it is recommended to directly delete the `upstream/` and `upstream-tests/` directories and move the newly downloaded sources to these locations.
+
+- **Packaging Decisions:**
+    - The `lua` and `luac` executables are kept in a single `lua` package to simplify maintenance and maintain backward compatibility.
+    - Documentation files are only installed with the `lua` package to prevent redundancy.
+
+- **Testing Limitations:**
+    - Upstream does not provide a comprehensive test suite for the C library; therefore, the `liblua` package only includes basic smoke tests.
+    - The `luac` executable in the `lua` package is built but not extensively tested due to a lack of upstream tests.
+    - The `lua-tests` package executes only the basic Lua script tests. The complete or internal test suite is not used as it is expected to fail by design in this build context (see [here](https://www.lua.org/tests/)).
+    - On Windows (MSVC/Clang), the basic tests are known to fail in unoptimized builds, likely due to an intentional stack overflow test.
+
+- **Metadata:** Currently, the `lua` and `luac` executables in the `lua` package do not provide any `build2` metadata.
 
 ## Contributing
-Thank you in advance for your help and contribution to keep this package up-to-date.
-Please, file an issue on [GitHub](https://github.com/build2-packaging/lua/issues) for questions, bug reports, or to recommend updating the package version.
-If you're making a pull request to fix bugs or update the package version yourself, refer to the [`build2` Packaging Guidelines](https://build2.org/build2-toolchain/doc/build2-toolchain-packaging.xhtml#core-version-management).
+Contributions are welcome and greatly appreciated!
+Please start by [opening an issue](https://github.com/build2-packaging/lua/issues) to report a bug, suggest an improvement, or request a version update.
+This helps us coordinate efforts and avoid duplicate work.
+You are then welcome to submit a [pull request](https://github.com/build2-packaging/lua/pulls) that references the issue.
+For guidance on package maintenance, please see the [`build2` Packaging Guidelines](https://build2.org/build2-toolchain/doc/build2-toolchain-packaging.xhtml).

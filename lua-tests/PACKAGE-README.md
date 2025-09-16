@@ -1,1 +1,1 @@
-../README.md
+../lua/PACKAGE-README.md
