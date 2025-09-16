@@ -53,6 +53,7 @@ Afterwards, use `b` or `bdep` to build, test, install, and distribute the packag
 - **Packaging Decisions:**
     - The `lua` and `luac` executables are kept in a single `lua` package to simplify maintenance and maintain backward compatibility.
     - Documentation files are only installed with the `lua` package to prevent redundancy.
+    - The packages build Lua's source code using a C compiler by default, as this is the library's native language. While the sources are compatible with C++ compilers, this choice could introduce subtle differences in areas such as linker and standard library behavior, compiler optimizations, or error reporting. If building with a C++ compiler is a requirement for your project, please open an issue to discuss the possibility of adding a configuration variable.
 
 - **Testing Limitations:**
     - Upstream does not provide a comprehensive test suite for the C library; therefore, the `liblua` package only includes basic smoke tests.
