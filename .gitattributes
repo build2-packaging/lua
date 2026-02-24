@@ -20,4 +20,5 @@
 
 # See: https://build2.org/article/symlinks.xhtml#windows
 #
+liblua/liblua/src symlink=dir
 lua/doc symlink=dir

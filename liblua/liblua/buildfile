@@ -1,11 +1,13 @@
 # Headers and Sources
 #
-lib{lua}: {hxx h c}{**}
+pub_hdrs = src/h{luaconf lua lualib lauxlib}
+lib{lua}: src/h{*} src/c{* -lua -luac} src/hxx{lua}
 
 # Build and Export Options
 #
-cc.poptions =+ "-I$src_base"
-lib{lua}: cc.export.poptions = "-I$src_base"
+ipath = [dir_path] $src_base/src
+cc.poptions =+ "-I$ipath"
+lib{lua}: cc.export.poptions = "-I$ipath"
 #
 poptions = -DLUA_COMPAT_5_3
 #
@@ -49,8 +51,7 @@ else
 # Installation
 #
 h{*}: install = false
+for hdr : $pub_hdrs
+  $hdr@src/: install = include/
 hxx{*}: install = include/
-h{lua}@./: install = include/
-h{luaconf}@./: install = include/
-h{lualib}@./: install = include/
-h{lauxlib}@./: install = include/
+

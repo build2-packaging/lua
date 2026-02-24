@@ -1,6 +1,6 @@
 $out_root/
 {
-  include src/
+  include liblua/
 }
 
-export $out_root/src/$import.target
+export $out_root/liblua/$import.target
