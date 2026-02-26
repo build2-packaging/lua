@@ -1,0 +1,9 @@
+import lua_libs = liblua%lib{lua}
+
+exe{lua}: src/c{lua} $lua_libs
+
+if $config.lua.readline
+{
+  import lua_libs += readline%lib{readline}
+  obj{lua}: c.poptions += -DLUA_USE_READLINE
+}

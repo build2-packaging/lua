@@ -51,4 +51,7 @@
 
 # Allow documentation folder.
 #
+!liblua/liblua/src
 !lua/doc
+!lua/lua/src
+!lua/luac/src

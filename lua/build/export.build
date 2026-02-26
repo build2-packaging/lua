@@ -1,6 +1,8 @@
 $out_root/
 {
-  include src/
+  include liblua/
+  include lua/
+  include luac/
 }
 
 # Check import target for `lib{lua}` and variants to allow for backwards
@@ -12,10 +14,10 @@ $out_root/
 if ($import.target == lib{lua}  || \
     $import.target == liba{lua} || \
     $import.target == libs{lua})
-{
-  export $directory($($out_root/src/ liblua))/$import.target
-}
+  export $directory($($out_root/liblua/ liblua))/$import.target
+elif ($import.target == exe{lua})
+  export $out_root/lua/$import.target
+elif ($import.target == exe{luac})
+  export $out_root/luac/$import.target
 else
-{
-  export $out_root/src/$import.target
-}
+  fail Unknown Import Target: $import.target

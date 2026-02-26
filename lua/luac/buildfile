@@ -1,0 +1,3 @@
+import luac_libs = liblua%liba{lua}
+
+exe{luac}: src/c{luac} $luac_libs

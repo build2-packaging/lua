@@ -22,3 +22,5 @@
 #
 liblua/liblua/src symlink=dir
 lua/doc symlink=dir
+lua/lua/src symlink=dir
+lua/luac/src symlink=dir
