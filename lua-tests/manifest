@@ -1,6 +1,6 @@
 : 1
 name: lua-tests
-version: 5.4.8
+version: 5.4.8+1
 type: exe
 language: c
 project: lua
