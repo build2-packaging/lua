@@ -1,0 +1,5 @@
+import lua = liblua%lib{lua}
+exe{tests}: cxx{*} $lua file{test.lua}
+{
+  test.arguments = $src_base/test.lua
+}

@@ -1,3 +1,5 @@
-import luac_libs = liblua%liba{lua}
+# Using the static Lua library seems to be the best practice.
+#
+import lib = liblua%liba{lua}
 
-exe{luac}: src/c{luac} $luac_libs
+exe{luac}: src/c{luac} $lib
