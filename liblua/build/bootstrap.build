@@ -1,4 +1,5 @@
 project = liblua
+subprojects = tests/c/ tests/cxx/
 
 using version
 using config
