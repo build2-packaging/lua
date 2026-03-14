@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <format>
 
 #include <lua.hpp>  // Complete C++ Lua API
 
@@ -32,7 +31,7 @@ int main(int argc, char** argv) {
   for (int i = 1; i < argc; ++i) {
     // Execute Lua script to register its functions.
     if (luaL_dofile(L, argv[i]) != LUA_OK) {
-      std::cerr << std::format("{}\n", lua_tostring(L, -1));
+      std::cerr << lua_tostring(L, -1) << std::endl;
       lua_pop(L, 1);  // Pop error message.
       return 1;
     }
@@ -41,13 +40,12 @@ int main(int argc, char** argv) {
     // Ensure it actually is a function.
     if (!lua_isfunction(L, -1)) {
       lua_pop(L, 1);  // Pop global variable on the stack.
-      std::cerr << std::format("{}: 'test' must be available as function.\n",
-                               argv[i]);
+      std::cerr << argv[i] << ": 'test' must be available as function.\n";
       return 1;
     }
     // Call the global test function from this side.
     if (lua_pcall(L, 0, 0, 0) != LUA_OK) {
-      std::cerr << std::format("{}: {}\n", argv[i], lua_tostring(L, -1));
+      std::cerr << argv[i] << ": " << lua_tostring(L, -1) << std::endl;
       lua_pop(L, 1);  // Pop error message.
       return 1;
     }
