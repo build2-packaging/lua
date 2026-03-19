@@ -1,5 +1,5 @@
 # Using the static Lua library seems to be the best practice.
 #
-import lib = liblua%liba{lua}
+import liblua = liblua%liba{lua}
 
-exe{luac}: src/c{luac} $lib
+exe{luac}: src/$src_type{luac.c} $liblua

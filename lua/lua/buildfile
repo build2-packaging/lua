@@ -1,9 +1,7 @@
-import lib = liblua%lib{lua}
-
-exe{lua}: src/c{lua} $lib
+exe{lua}: src/$src_type{lua.c} $liblua
 
 if $config.lua.readline
 {
   import lib += readline%lib{readline}
-  obj{lua}: c.poptions += -DLUA_USE_READLINE
+  obj{lua}: cc.poptions += -DLUA_USE_READLINE
 }

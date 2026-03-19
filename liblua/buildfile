@@ -1,3 +1,8 @@
-./: {*/ -build/} manifest doc{README *.md} legal{LICENSE}
+./: liblua/ manifest doc{README *.md} legal{LICENSE}
 
-tests/: install = false
+./: tests-cxx/: install = false
+./: tests-c/:
+{
+  include = (!$config.liblua.compile_as_cxx)
+  install = false
+}

@@ -1,3 +1,23 @@
+# Configure whether to use the GNU `readline` library for Lua's interpreter.
+#
+config [bool] config.lua.readline ?= false
+
+# Metadata Importation
+#
+# Import `liblua%lib{lua}` immediately to export it as `lua%lib{lua}` for
+# backward compatibility. As for the installation case, declare it as a
+# prerequisite for this directory. Note that this will affect operations like
+# `clean`, which in turn will impact the `liblua` package when applied to the
+# `lua` package.
+#
+# See: https://github.com/build2/build2/issues/331
+#
+import! [metadata] liblua = liblua%lib{lua}
+compile_as_cxx = [bool] $($liblua: liblua.compiled_as_cxx)
+src_type = ($compile_as_cxx ? cxx : c)
+
+# C Module
+#
 c.std = 99
 
 using c
@@ -5,10 +25,20 @@ using c
 h{*}: extension = h
 c{*}: extension = c
 
-test.target = $c.target
-
-# Configuration Variables
-
-# Whether to use GNU `readline` library for the Lua interpreter `exe{lua}`.
+# C++ Module
 #
-config [bool] config.lua.readline ?= false
+if $compile_as_cxx
+{
+  cxx.std = latest
+
+  using cxx
+
+  hxx{*}: extension = hpp
+  cxx{*}: extension = cpp
+
+  hxx{*}: cxx.importable = false
+}
+
+# Tests
+#
+test.target = ($compile_as_cxx ? $cxx.target : $c.target)

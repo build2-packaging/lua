@@ -1,3 +1,11 @@
+# Use and test deprecated import of `lib{lua}` from `lua` package.
+#
+import! [metadata] liblua = lua%lib{lua}
+compile_as_cxx = [bool] $($liblua: liblua.compiled_as_cxx)
+src_type = ($compile_as_cxx ? cxx : c)
+
+# C Module
+#
 c.std = 99
 
 using c
@@ -5,6 +13,22 @@ using c
 h{*}: extension = h
 c{*}: extension = c
 
-test.target = $c.target
+# C++ Module
+#
+if $compile_as_cxx
+{
+  cxx.std = latest
+
+  using cxx
+
+  hxx{*}: extension = hpp
+  cxx{*}: extension = cpp
+
+  hxx{*}: cxx.importable = false
+}
+
+# Tests
+#
+test.target = ($compile_as_cxx ? $cxx.target : $c.target)
 
 exe{*}: test = true

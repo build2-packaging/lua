@@ -1,7 +1,13 @@
 #include <iostream>
 #include <memory>
 
+#ifdef LUA_COMPILED_AS_CXX
+#include <lua.h>      // Basic Lua API
+#include <lauxlib.h>  // Abstraction Layer for Lua API
+#include <lualib.h>   // Functions to Open Lua Libraries
+#else
 #include <lua.hpp>  // Complete C++ Lua API
+#endif
 
 static int accumulate(lua_State* L) {
   const int n = lua_gettop(L);

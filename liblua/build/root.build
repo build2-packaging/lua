@@ -1,15 +1,28 @@
+# Configure whether to compile Lua as C++,
+# ie., compile Lua's source files via a C++ compiler instead of a C Compiler.
+#
+config [bool] config.liblua.compile_as_cxx ?= false
+
+# C Module
+#
 c.std = 99
-cxx.std = latest
 
 using c
-using cxx
 
 h{*}: extension = h
 c{*}: extension = c
+
+# C++ Module
+#
+cxx.std = latest
+
+using cxx
 
 hxx{*}: extension = hpp
 cxx{*}: extension = cpp
 
 hxx{*}: cxx.importable = false
 
-test.target = $c.target
+# Tests
+#
+test.target = ($config.liblua.compile_as_cxx ? $cxx.target : $c.target)

@@ -1,7 +1,13 @@
 # Headers and Sources
 #
-pub_hdrs = src/h{luaconf lua lualib lauxlib}
-lib{lua}: src/h{*} src/c{* -lua -luac} src/hxx{lua}
+hdr_type = ($config.liblua.compile_as_cxx ? hxx : h)
+src_type = ($config.liblua.compile_as_cxx ? cxx : c)
+
+pub_hdrs = src/$hdr_type{luaconf.h lua.h lualib.h lauxlib.h}
+
+lib{lua}: src/$hdr_type{* -lua.hpp}
+lib{lua}: src/$src_type{*.c -lua.c -luac.c}
+lib{lua}: src/hxx{lua.hpp}: include = (!$config.liblua.compile_as_cxx)
 
 # Build and Export Options
 #
@@ -47,6 +53,14 @@ if $version.pre_release
   lib{lua}: bin.lib.version = "-$version.project_id"
 else
   lib{lua}: bin.lib.version = "-$version.major.$version.minor"
+
+# Library Metadata
+#
+lib{lua}:
+{
+  export.metadata = 1 liblua
+  liblua.compiled_as_cxx = [bool] $config.liblua.compile_as_cxx
+}
 
 # Installation
 #

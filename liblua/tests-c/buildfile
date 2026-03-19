@@ -1,0 +1,8 @@
+import! [metadata] lua = liblua%lib{lua}
+cxx_compiled = [bool] $($lua: liblua.compiled_as_cxx)
+assert! ($cxx_compiled) "Lua compiled as C++ and is incompatible with C projects."
+
+exe{tests}: c{*} $lua file{test.lua}
+{
+  test.arguments = $src_base/test.lua
+}

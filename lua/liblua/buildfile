@@ -6,5 +6,5 @@
 #
 # See: https://github.com/build2/build2/issues/331
 #
-import! [rule_hint=c.link] liblua = liblua%lib{lua}
+# import! [rule_hint=c.link] liblua = liblua%lib{lua}
 ./: $liblua
