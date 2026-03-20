@@ -18,3 +18,5 @@ package-email: packaging@build2.org
 
 depends: * build2 >= 0.17.0
 depends: * bpkg >= 0.17.0
+
+cxx-build-config: config.liblua.compile_as_cxx=true
